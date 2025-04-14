@@ -1,7 +1,11 @@
 -- Who was the leading home run hitter for each team in 2019?
 -- NOTE: need more advanced SQL to answer this question without
 --       raising a warning: "Field of aggregated query neither grouped nor aggregated"
-
+SELECT max(home_runs), teams.name, players.first_name, players.last_name FROM stats
+INNER JOIN players on players.id=stats.player_id
+INNER JOIN teams on teams.id=stats.team_id
+WHERE teams.year= 2019
+GROUP BY teams.name
 -- Expected result:
 --
 -- +-------------------------------+------------+-------------+----------------------+
